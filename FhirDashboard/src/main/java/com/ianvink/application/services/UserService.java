@@ -37,14 +37,6 @@ public class UserService {
     }
 
     @Transactional
-    public UserPermissionsEntity updatePermissions(Long userId, boolean editSettings, boolean deleteRecords) {
-        UserPermissionsEntity permissions = userPermissionRepository.findByUserIdWithUser(userId)
-                .orElseThrow(
-                        () -> new IllegalArgumentException("Permissions profile not found for user ID: " + userId));
-        return userPermissionRepository.save(permissions);
-    }
-
-    @Transactional
     public UserPermissionsEntity saveUserPermissions(UserPermissionsEntity permissions) {
         return userPermissionRepository.save(permissions);
     }

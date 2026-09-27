@@ -56,7 +56,6 @@ public class PatientListView extends VerticalLayout implements BeforeEnterObserv
         UserEntity currentUser = VaadinSession.getCurrent().getAttribute(UserEntity.class);
 
         if (currentUser == null) {
-            // Reroute already happens in the PortalLayout
             return;
         }
 
@@ -142,23 +141,22 @@ public class PatientListView extends VerticalLayout implements BeforeEnterObserv
     }
 
     private String getMaskedName(Patient patient) {
-        if (!patient.hasName())
+        if (!patient.hasName()) {
             return "Unknown";
-        HumanName name = patient.getNameFirstRep();
+        }
 
-        boolean showFirst = this.userPermissions.canViewFirstName();
-        boolean showLast = this.userPermissions.canViewLastName();
+        HumanName name = patient.getNameFirstRep();
 
         String first = "";
         if (name.hasGiven() && !name.getGiven().isEmpty()) {
             String given = name.getGiven().get(0).getValue();
-            first = showFirst ? given : toInitial(given);
+            first = this.userPermissions.canViewFirstName() ? given : toInitial(given);
         }
 
         String last = "";
         if (name.hasFamily()) {
             String family = name.getFamily();
-            last = showLast ? family : toInitial(family);
+            last = this.userPermissions.canViewLastName() ? family : toInitial(family);
         }
 
         return (first + " " + last).trim();

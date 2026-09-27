@@ -1,5 +1,5 @@
 # Quiz
-App displays patient information based on user permissions
+App that displays patient information based on user permissions
 
 ## Installation
 ### Install Docker
