@@ -1,0 +1,251 @@
+{
+  "resourceType": "Bundle",
+  "type": "transaction",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:patient-1",
+      "request": {
+        "method": "POST",
+        "url": "Patient"
+      },
+      "resource": {
+        "resourceType": "Patient",
+        "identifier": [
+          {
+            "system": "http://fhir.nl",
+            "value": "123456782"
+          }
+        ],
+        "name": [
+          {
+            "use": "official",
+            "family": "De Vries",
+            "given": [
+              "Jan"
+            ]
+          }
+        ],
+        "telecom": [
+          {
+            "system": "phone",
+            "value": "0612345678",
+            "use": "mobile"
+          },
+          {
+            "system": "email",
+            "value": "jan.devries@example.nl"
+          }
+        ],
+        "gender": "male",
+        "birthDate": "1985-05-12",
+        "address": [
+          {
+            "use": "home",
+            "line": [
+              "Kerkstraat 10"
+            ],
+            "city": "Utrecht",
+            "postalCode": "3511 ED",
+            "country": "NLD"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:patient-2",
+      "request": {
+        "method": "POST",
+        "url": "Patient"
+      },
+      "resource": {
+        "resourceType": "Patient",
+        "identifier": [
+          {
+            "system": "http://fhir.nl",
+            "value": "987654321"
+          }
+        ],
+        "name": [
+          {
+            "use": "official",
+            "family": "Jansen",
+            "given": [
+              "Anouk"
+            ]
+          }
+        ],
+        "telecom": [
+          {
+            "system": "phone",
+            "value": "0687654321",
+            "use": "mobile"
+          },
+          {
+            "system": "email",
+            "value": "anouk.jansen@example.nl"
+          }
+        ],
+        "gender": "female",
+        "birthDate": "1992-09-23",
+        "address": [
+          {
+            "use": "home",
+            "line": [
+              "Dorpsstraat 45"
+            ],
+            "city": "Amsterdam",
+            "postalCode": "1012 GX",
+            "country": "NLD"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:patient-3",
+      "request": {
+        "method": "POST",
+        "url": "Patient"
+      },
+      "resource": {
+        "resourceType": "Patient",
+        "identifier": [
+          {
+            "system": "http://fhir.nl",
+            "value": "112233445"
+          }
+        ],
+        "name": [
+          {
+            "use": "official",
+            "family": "Bakker",
+            "given": [
+              "Daan"
+            ]
+          }
+        ],
+        "telecom": [
+          {
+            "system": "phone",
+            "value": "0655544332",
+            "use": "mobile"
+          },
+          {
+            "system": "email",
+            "value": "daan.bakker@example.nl"
+          }
+        ],
+        "gender": "male",
+        "birthDate": "1978-11-02",
+        "address": [
+          {
+            "use": "home",
+            "line": [
+              "Stationsplein 1"
+            ],
+            "city": "Rotterdam",
+            "postalCode": "3013 AJ",
+            "country": "NLD"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:patient-4",
+      "request": {
+        "method": "POST",
+        "url": "Patient"
+      },
+      "resource": {
+        "resourceType": "Patient",
+        "identifier": [
+          {
+            "system": "http://fhir.nl",
+            "value": "556677889"
+          }
+        ],
+        "name": [
+          {
+            "use": "official",
+            "family": "Smit",
+            "given": [
+              "Emma"
+            ]
+          }
+        ],
+        "telecom": [
+          {
+            "system": "phone",
+            "value": "0644433221",
+            "use": "mobile"
+          },
+          {
+            "system": "email",
+            "value": "emma.smit@example.nl"
+          }
+        ],
+        "gender": "female",
+        "birthDate": "2001-03-15",
+        "address": [
+          {
+            "use": "home",
+            "line": [
+              "Markt 8"
+            ],
+            "city": "Eindhoven",
+            "postalCode": "5611 EB",
+            "country": "NLD"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:patient-5",
+      "request": {
+        "method": "POST",
+        "url": "Patient"
+      },
+      "resource": {
+        "resourceType": "Patient",
+        "identifier": [
+          {
+            "system": "http://fhir.nl",
+            "value": "998877665"
+          }
+        ],
+        "name": [
+          {
+            "use": "official",
+            "family": "Dijkstra",
+            "given": [
+              "Lieke"
+            ]
+          }
+        ],
+        "telecom": [
+          {
+            "system": "phone",
+            "value": "0633322110",
+            "use": "mobile"
+          },
+          {
+            "system": "email",
+            "value": "lieke.dijkstra@example.nl"
+          }
+        ],
+        "gender": "female",
+        "birthDate": "1965-07-30",
+        "address": [
+          {
+            "use": "home",
+            "line": [
+              "Hoogstraat 124"
+            ],
+            "city": "Groningen",
+            "postalCode": "9712 NX",
+            "country": "NLD"
+          }
+        ]
+      }
+    }
+  ]
+}

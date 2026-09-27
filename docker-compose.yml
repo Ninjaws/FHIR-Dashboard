@@ -1,0 +1,74 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:17-alpine
+    container_name: fhir-dashboard-access-db
+    environment:
+      POSTGRES_DB: fhir_dashboard
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: mysecretpassword
+    # ports:
+    #   - "5432:5432"
+    volumes:
+      - fhir-dashboard-access-data:/var/lib/postgresql/data
+    networks:
+      - user-access-network
+
+  hapi-fhir:
+    image: hapiproject/hapi:v8.12.0-1
+    container_name: fhir-dashboard-fhir-server
+    # ports:
+    #   - "8081:8080"
+    environment:
+      - hapi.fhir.tester.server.name=Local HAPI FHIR
+      - hapi.fhir.tester.server.server_address=http://fhir-dashboard-fhir-server:8080/fhir
+    networks:
+      - patient-data-network
+
+  fhir-data-loader:
+      image: curlimages/curl:latest
+      container_name: fhir-data-loader
+      volumes:
+        - ./resources/fhir-init.json:/tmp/fhir-init.json
+      command: >
+        sh -c "
+          echo 'Waiting for FHIR server to go live...';
+          until curl -s -o /dev/null -w '%{http_code}' http://fhir-dashboard-fhir-server:8080/fhir/metadata | grep -q '200'; do
+            sleep 2;
+          done;
+          echo 'FHIR Server found. Providing data...';
+          curl -X POST 'http://fhir-dashboard-fhir-server:8080/fhir' -H 'Content-Type: application/fhir+json' -d @/tmp/fhir-init.json;
+          echo 'Data loaded succesfully';
+        "
+      depends_on:
+        - hapi-fhir
+      networks:
+        - patient-data-network
+
+  vaadin-app:
+    build: ./FhirDashboard
+    container_name: fhir-dashboard-app
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://fhir-dashboard-access-db:5432/fhir_dashboard
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=mysecretpassword
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - FHIR_SERVER_URL=http://fhir-dashboard-fhir-server:8080/fhir
+    depends_on:
+      - postgres
+      - hapi-fhir
+    networks:
+      - user-access-network
+      - patient-data-network
+
+volumes:
+  fhir-dashboard-access-data:
+
+networks:
+  user-access-network:
+    driver: bridge
+  patient-data-network:
+    driver: bridge

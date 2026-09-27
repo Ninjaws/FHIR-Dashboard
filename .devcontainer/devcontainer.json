@@ -1,0 +1,26 @@
+{
+	"name": "Java",
+	"image": "mcr.microsoft.com/devcontainers/java:3-25-trixie",
+	"features": {
+		"ghcr.io/devcontainers/features/java:1": {
+			"version": "none",
+			"installMaven": "true",
+			"installGradle": "false"
+		},
+		"ghcr.io/stu-bell/devcontainer-features/node:0": {}
+	},
+	"runArgs": [
+		"--network=shared-db-network"
+	],
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"vscjava.vscode-java-pack"
+			],
+			"settings": {
+				"java.compile.nullAnalysis.mode": "automatic",
+				"java.configuration.updateBuildConfiguration": "interactive"
+			}
+		}
+	}
+}
