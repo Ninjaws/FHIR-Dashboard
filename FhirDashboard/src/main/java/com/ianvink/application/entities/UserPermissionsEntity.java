@@ -42,10 +42,10 @@ public class UserPermissionsEntity implements Serializable {
     @Column(name = "can_view_bsn", nullable = false)
     private boolean canViewBsn = false;
 
-    
     public UserEntity getUser() {
         return user;
     }
+
     public void setUser(UserEntity user) {
         this.user = user;
     }
@@ -53,6 +53,7 @@ public class UserPermissionsEntity implements Serializable {
     public boolean canViewFirstName() {
         return canViewFirstName;
     }
+
     public void setCanViewFirstName(boolean canViewFirstName) {
         this.canViewFirstName = canViewFirstName;
     }
@@ -60,6 +61,7 @@ public class UserPermissionsEntity implements Serializable {
     public boolean canViewLastName() {
         return canViewLastName;
     }
+
     public void setCanViewLastName(boolean canViewLastName) {
         this.canViewLastName = canViewLastName;
     }
@@ -67,6 +69,7 @@ public class UserPermissionsEntity implements Serializable {
     public boolean canViewEmail() {
         return canViewEmail;
     }
+
     public void setCanViewEmail(boolean canViewEmail) {
         this.canViewEmail = canViewEmail;
     }
@@ -74,6 +77,7 @@ public class UserPermissionsEntity implements Serializable {
     public boolean canViewPhoneNumber() {
         return canViewPhoneNumber;
     }
+
     public void setCanViewPhoneNumber(boolean canViewPhoneNumber) {
         this.canViewPhoneNumber = canViewPhoneNumber;
     }
@@ -81,6 +85,7 @@ public class UserPermissionsEntity implements Serializable {
     public boolean canViewAddress() {
         return canViewAddress;
     }
+
     public void setCanViewAddress(boolean canViewAddress) {
         this.canViewAddress = canViewAddress;
     }
@@ -88,8 +93,8 @@ public class UserPermissionsEntity implements Serializable {
     public boolean canViewBsn() {
         return canViewBsn;
     }
+
     public void setCanViewBsn(boolean canViewBsn) {
         this.canViewBsn = canViewBsn;
     }
 }
-

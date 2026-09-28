@@ -10,6 +10,7 @@ import com.ianvink.application.entities.UserPermissionsEntity;
 import com.ianvink.application.services.UserService;
 import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
@@ -29,7 +30,7 @@ public class UserPermissionsListView extends VerticalLayout {
                 headerBar.setWidthFull();
                 headerBar.setAlignItems(Alignment.CENTER);
 
-                com.vaadin.flow.component.html.Span subtitle = new com.vaadin.flow.component.html.Span(
+                Span subtitle = new Span(
                                 "User Permissions");
                 subtitle.getStyle()
                                 .set("font-size", "var(--lumo-font-size-l)")

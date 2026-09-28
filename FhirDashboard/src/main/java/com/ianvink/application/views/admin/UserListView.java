@@ -10,6 +10,7 @@ import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.notification.NotificationVariant;
@@ -34,7 +35,7 @@ public class UserListView extends VerticalLayout {
         headerBar.setWidthFull();
         headerBar.setAlignItems(Alignment.CENTER);
 
-        com.vaadin.flow.component.html.Span subtitle = new com.vaadin.flow.component.html.Span(
+        Span subtitle = new Span(
                 "Users");
         subtitle.getStyle()
                 .set("font-size", "var(--lumo-font-size-l)")
@@ -55,6 +56,33 @@ public class UserListView extends VerticalLayout {
         addUserButton.addClickListener(e -> openAddUserDialog());
         add(addUserButton);
         updateList();
+    }
+
+    private void configureGrid() {
+        grid.setSizeFull();
+
+        grid.addColumn(user -> user.getId())
+                .setHeader("ID")
+                .setKey("id");
+
+        grid.addColumn(user -> user.getFirstName())
+                .setHeader("First Name")
+                .setKey("firstname");
+
+        grid.addColumn(user -> user.getLastName())
+                .setHeader("Last Name")
+                .setKey("lastname");
+
+        grid.addComponentColumn(user -> {
+            Button deleteButton = new Button(VaadinIcon.TRASH.create());
+            deleteButton.addThemeVariants(ButtonVariant.LUMO_ERROR, ButtonVariant.LUMO_TERTIARY);
+            deleteButton.getStyle().set("cursor", "pointer");
+            deleteButton.setTooltipText("Remove user");
+            deleteButton.addClickListener(e -> openDeleteConfirmationDialog(user));
+            return deleteButton;
+        }).setHeader("Actions").setKey("actions").setFlexGrow(0).setWidth("100px");
+
+        grid.getColumns().forEach(col -> col.setAutoWidth(true));
     }
 
     private void openAddUserDialog() {
@@ -90,33 +118,6 @@ public class UserListView extends VerticalLayout {
 
         dialog.getFooter().add(cancelButton, saveButton);
         dialog.open();
-    }
-
-    private void configureGrid() {
-        grid.setSizeFull();
-
-        grid.addColumn(user -> user.getId())
-                .setHeader("ID")
-                .setKey("id");
-
-        grid.addColumn(user -> user.getFirstName())
-                .setHeader("First Name")
-                .setKey("firstname");
-
-        grid.addColumn(user -> user.getLastName())
-                .setHeader("Last Name")
-                .setKey("lastname");
-
-        grid.addComponentColumn(user -> {
-            Button deleteButton = new Button(VaadinIcon.TRASH.create());
-            deleteButton.addThemeVariants(ButtonVariant.LUMO_ERROR, ButtonVariant.LUMO_TERTIARY);
-            deleteButton.getStyle().set("cursor", "pointer");
-            deleteButton.setTooltipText("Remove user");
-            deleteButton.addClickListener(e -> openDeleteConfirmationDialog(user));
-            return deleteButton;
-        }).setHeader("Actions").setKey("actions").setFlexGrow(0).setWidth("100px");
-
-        grid.getColumns().forEach(col -> col.setAutoWidth(true));
     }
 
     private void openDeleteConfirmationDialog(UserEntity user) {

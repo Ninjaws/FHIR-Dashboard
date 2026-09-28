@@ -5,6 +5,7 @@ import com.ianvink.application.entities.UserPermissionsEntity;
 import com.ianvink.application.services.PatientService;
 import com.ianvink.application.services.UserService;
 import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.BeforeEnterEvent;
@@ -40,7 +41,7 @@ public class PatientListView extends VerticalLayout implements BeforeEnterObserv
         HorizontalLayout headerBar = new HorizontalLayout();
         headerBar.setWidthFull();
         headerBar.setAlignItems(Alignment.CENTER);
-        com.vaadin.flow.component.html.Span subtitle = new com.vaadin.flow.component.html.Span(
+        Span subtitle = new Span(
                 "Patients");
         subtitle.getStyle()
                 .set("font-size", "var(--lumo-font-size-l)")
