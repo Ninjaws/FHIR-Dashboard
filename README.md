@@ -1,4 +1,4 @@
-# Quiz
+# FHIR Dashboard
 App that displays patient information based on user permissions
 
 ## Installation
